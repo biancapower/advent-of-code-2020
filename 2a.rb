@@ -18,14 +18,6 @@ file_data.map {|z| z[0].map! {|a| a.to_i}}
     # # [[2, 13], "t" "llckxhfmtznptndcsx"]
 file_data.map {|z| z[1].map! {|a| a.chop}}
 
-# does the letter in arr[1] appear in the string arr[2] between arr[0][0] and arr[0][1] times?
-=begin # loop through file_data, the below are valid for each array within file_data
-min = arr[0][0]
-max = arr[0][1]
-letter = arr[1]
-password = arr[2]
-=end
-
 sum_valid_passwords = 0;
 
 # REGEX - count number of matches
@@ -34,7 +26,6 @@ def count_em(string, substring)
 end
 
 for i in 0..file_data.length - 1
-  # p file_data[i][0][0]
   count = count_em(file_data[i][2][0], file_data[i][1][0])
   if count >= file_data[i][0][0] && count <= file_data[i][0][1]
     sum_valid_passwords += 1
