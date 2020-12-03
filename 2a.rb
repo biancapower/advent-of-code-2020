@@ -33,10 +33,10 @@ def count_em(string, substring)
   string.scan(/(?=#{substring})/).count
 end
 
-for i in 0..file_data.length
+for i in 0..file_data.length - 1
   # p file_data[i][0][0]
   count = count_em(file_data[i][2][0], file_data[i][1][0])
-  if count > file_data[i][0][0] && count < file_data[i][0][1]
+  if count >= file_data[i][0][0] && count <= file_data[i][0][1]
     sum_valid_passwords += 1
   end
 end
