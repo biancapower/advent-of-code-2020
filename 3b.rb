@@ -1,16 +1,16 @@
-# open the file
 file = File.open("3-input.txt")
-# turn file data into an array of data
 data = file.readlines.map(&:chomp)
 
+counter = (0..data[0].length-1).to_a
 sum = 0
-x = 0
 
-for line in 0..data.length - 1
-  x += 3
-  while x > data[line].length
-    data[line] *= 2 # ensure the line is long enough (hacky, longer than needed)
-  end
+loopy = counter.cycle
+loopy.next
+
+for line in 0..data.length - 1  
+  loopy.next
+  loopy.next 
+  x = loopy.next
   
   sum +=1 if data[line][x] == "#"
 end
