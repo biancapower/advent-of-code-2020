@@ -7,7 +7,7 @@ sum = 0
 loopy = counter.cycle
 loopy.next
 
-for line in 0..data.length - 1  
+for line in 1..data.length - 1  
   loopy.next
   loopy.next 
   x = loopy.next
