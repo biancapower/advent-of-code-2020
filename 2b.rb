@@ -26,7 +26,7 @@ for i in 0..file_data.length - 1
   substring = file_data[i][1][0]
   string = file_data[i][2][0]
 
-  if (string[pos_one] == substring) ^ (string[pos_two] == substring) #FIXME: XOR
+  if (string[pos_one] == substring) ^ (string[pos_two] == substring)
     sum_valid_passwords += 1
   end
 end
