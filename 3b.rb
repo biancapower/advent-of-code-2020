@@ -8,8 +8,8 @@ x = 0
 
 for line in 0..data.length - 1
   x += 3
-  if x > data[line].length
-    data[line] *= x # way too hacky, makes the lines extremely unnecessarily long
+  while x > data[line].length
+    data[line] *= 2 # ensure the line is long enough (hacky, longer than needed)
   end
   
   sum +=1 if data[line][x] == "#"
