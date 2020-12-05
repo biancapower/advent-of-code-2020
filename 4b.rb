@@ -3,23 +3,27 @@ passport_data = file.read.split("\n\n").to_a
 passport_data.map!{|x| x.gsub(/\n/, " ")}#.split(" ")} # clean up data
 
 patterns = [ # required fields as regex
-  /(bry:)(19[2-8][0-9]|199[0-9]|200[0-2])/,
-  /(iyr:)(201[0-9]|2020)/,
-  /(eyr:)(202[0-9]|2030)/,
-  /(hgt:)(((1[5-8][0-9]|19[0-3])(cm))|((59|6[0-9]|7[0-6])(in)))/,
-  /(hcl:#)([0-9]|[a-f]){6}/,
-  /(ecl:)(amb|blu|brn|gry|grn|hzl|oth)/,
-  /(pid:)(\d{9})/
+  /(byr:)(19[2-8][0-9]|199[0-9]|200[0-2])(\s|\z)/,
+  /(iyr:)(201[0-9]|2020)(\s|\z)/,
+  /(eyr:)(202[0-9]|2030)(\s|\z)/,
+  /(hgt:)(((1[5-8][0-9]|19[0-3])(cm))|((59|6[0-9]|7[0-6])(in)))(\s|\z)/,
+  /(hcl:#)([0-9]|[a-f]){6}(\s|\z)/,
+  /(ecl:)(amb|blu|brn|gry|grn|hzl|oth)(\s|\z)/,
+  /(pid:)(\d{9})(\s|\z)/
 ]
 
-# for i in 0..passport_data.length - 1
-#   input = passport_data[i]
-#   p patterns.all? { |pattern| pattern.match?(input) }
-# end
+sum = 0
+
+for i in 0..passport_data.length - 1
+  input = passport_data[i]
+  sum+=1 if patterns.all? { |pattern| pattern.match?(input) }
+end
+
+p sum
 
 # p passport_data
-p input = passport_data[1]
-p patterns.all? { |pattern| pattern.match?(input) }
+# p input = passport_data[1]
+# p patterns.all? { |pattern| pattern.match?(input) }
 
 =begin
 byr (Birth Year) - four digits; at least 1920 and at most 2002.
