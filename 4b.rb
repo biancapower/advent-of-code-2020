@@ -1,6 +1,5 @@
 file = File.open("4-input.txt")
 passport_data = file.read.split("\n\n").to_a
-passport_data.map!{|x| x.gsub(/\n/, " ")}#.split(" ")} # clean up data
 
 patterns = [ # required fields as regex
   /(byr:)(19[2-8][0-9]|199[0-9]|200[0-2])(\s|\z)/,
@@ -20,10 +19,6 @@ for i in 0..passport_data.length - 1
 end
 
 p sum
-
-# p passport_data
-# p input = passport_data[1]
-# p patterns.all? { |pattern| pattern.match?(input) }
 
 =begin
 byr (Birth Year) - four digits; at least 1920 and at most 2002.
