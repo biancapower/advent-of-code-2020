@@ -1,31 +1,29 @@
 file = File.open("5-input.txt")
-data = file.readlines.map(&:chomp)
+@data = file.readlines.map(&:chomp)
 
-# for line in 0..data.length - 1
-  row_min = 0 
-  row_max = 127
+def analyse(min, max, i_start, i_end, lower_letter, upper_letter)
 
-  for i in 0..6
-    # case data[line][i]
-    case data[0][i]
+  for i in i_start..i_end
+    # case @data[line][i]
+    case @data[0][i]
     when "F"  # lower half
-      row_max = ((row_max + row_min) / 2.0).floor
+      max = ((max + min) / 2.0).floor
     when "B"  # upper half 
-      row_min = ((row_max + row_min) / 2.0).ceil
+      min = ((max + min) / 2.0).ceil
     else
-      p "error: #{data[line][i]}"
+      # p "error: #{@data[line][i]}"
     end
-    # p "#{data[0][i]}: #{i}, Row Max: #{row_max}, Row Min: #{row_min}"
-    row_num = (row_min + row_max) / 2
+    # p "#{@data[0][i]}: #{i}, Row Max: #{max}, Row Min: #{min}"
+    p row_num = (min + max) / 2
   end
 
-  col_min = 0
-  col_max = 7
+end
 
-  for i in 7..9
-    # TODO: same as above with L == F, R == B
-  end
+# for line in 0..@data.length - 1
 
-  p row_num
+  analyse(0, 127, 0, 6, "F", "B") # rows
+  analyse(0, 7, 7, 9, "L", "R") # cols
+
+  # p row_num
 # end
-# pp data
+# pp @data
