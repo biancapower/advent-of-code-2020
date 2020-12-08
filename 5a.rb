@@ -9,16 +9,23 @@ data = file.readlines.map(&:chomp)
     # case data[line][i]
     case data[0][i]
     when "F"  # lower half
-      row_max = row_max / 2
-      # p "F: #{i}, Row Max: #{row_max}"
+      row_max = ((row_max + row_min) / 2.0).floor
     when "B"  # upper half 
-      row_min = row_max / 2 
-      # p "B: #{i}, Row Min: #{row_min}"
+      row_min = ((row_max + row_min) / 2.0).ceil
     else
       p "error: #{data[line][i]}"
     end
-    p "#{data[0][i]}: #{i}, Row Max: #{row_max}, Row Min: #{row_min}"
+    # p "#{data[0][i]}: #{i}, Row Max: #{row_max}, Row Min: #{row_min}"
+    row_num = (row_min + row_max) / 2
   end
-  # p row_num
+
+  col_min = 0
+  col_max = 7
+
+  for i in 7..9
+    # TODO: same as above with L == F, R == B
+  end
+
+  p row_num
 # end
 # pp data
