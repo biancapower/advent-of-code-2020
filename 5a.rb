@@ -1,6 +1,8 @@
 file = File.open("5-input.txt")
 @data = file.readlines.map(&:chomp)
 
+@total = []
+
 def analyse(min, max, i_start, i_end, lower_letter, upper_letter)
 
   for i in i_start..i_end
@@ -14,8 +16,8 @@ def analyse(min, max, i_start, i_end, lower_letter, upper_letter)
       # p "error: #{@data[line][i]}"
     end
     p "#{i}: #{@data[0][i]}, Max: #{max}, Min: #{min}"
-    # p row_num = (min + max) / 2
   end
+  @total << (min + max) / 2
 
 end
 
@@ -26,4 +28,4 @@ end
 
   # p row_num
 # end
-# pp @data
+pp @total[0]*8 + @total[1]
