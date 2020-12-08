@@ -6,15 +6,15 @@ def analyse(min, max, i_start, i_end, lower_letter, upper_letter)
   for i in i_start..i_end
     # case @data[line][i]
     case @data[0][i]
-    when "F"  # lower half
+    when lower_letter  # lower half
       max = ((max + min) / 2.0).floor
-    when "B"  # upper half 
+    when upper_letter  # upper half 
       min = ((max + min) / 2.0).ceil
     else
       # p "error: #{@data[line][i]}"
     end
-    # p "#{@data[0][i]}: #{i}, Row Max: #{max}, Row Min: #{min}"
-    p row_num = (min + max) / 2
+    p "#{i}: #{@data[0][i]}, Max: #{max}, Min: #{min}"
+    # p row_num = (min + max) / 2
   end
 
 end
