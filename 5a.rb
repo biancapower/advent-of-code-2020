@@ -17,6 +17,7 @@ def analyse(min, max, i_start, i_end, lower_letter, upper_letter, line, place)
   end
   
   @total[place] = min if @total[place] < min
+  # FIXME: Major bug. This is replacing only the row or column, needs to replace both IF it will result in a larger seat ID 
 
 end
 
@@ -26,5 +27,6 @@ for line in 0...@data.length
   analyse(0, 7, 7, 9, "L", "R", line, 1) # cols
 
   # p row_num
+  pp @total[0]*8 + @total[1]
 end
 pp @total[0]*8 + @total[1]
