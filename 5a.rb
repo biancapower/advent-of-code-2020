@@ -1,32 +1,38 @@
 file = File.open("5-input.txt")
 @data = file.readlines.map(&:chomp)
 
-@total = [0,0]
+@total = Array.new(1,0)
 
 def analyse(min, max, i_start, i_end, lower_letter, upper_letter, line, place)
 
   for i in i_start..i_end
     case @data[line][i]
-    # case @data[0][i]
-    when lower_letter  # lower half
+    when lower_letter
       max = ((max + min) / 2.0).floor
-    when upper_letter  # upper half 
+    when upper_letter 
       min = ((max + min) / 2.0).ceil
     end
     p "#{i}: #{@data[0][i]}, Max: #{max}, Min: #{min}"
   end
   
-  @total[place] = min if @total[place] < min
-  # FIXME: Major bug. This is replacing only the row or column, needs to replace both IF it will result in a larger seat ID 
+  # if the subarray doesn't exist yet, create it
+  if place == 0
+    @total[line] = Array.new(2, 0)
+  end
 
+  @total[line][place] = min
 end
 
 for line in 0...@data.length
-
   analyse(0, 127, 0, 6, "F", "B", line, 0) # rows
   analyse(0, 7, 7, 9, "L", "R", line, 1) # cols
-
-  # p row_num
-  pp @total[0]*8 + @total[1]
 end
-pp @total[0]*8 + @total[1]
+
+highest = 0
+
+for i in 0...@total.length
+  score = @total[i][0]*8 + @total[i][1]
+  highest = score if score > highest
+end
+
+p highest
