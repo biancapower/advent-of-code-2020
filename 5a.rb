@@ -12,7 +12,6 @@ def analyse(min, max, i_start, i_end, lower_letter, upper_letter, line, place)
     when upper_letter 
       min = ((max + min) / 2.0).ceil
     end
-    p "#{i}: #{@data[0][i]}, Max: #{max}, Min: #{min}"
   end
   
   # if the subarray doesn't exist yet, create it
