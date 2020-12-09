@@ -12,17 +12,23 @@ bag_rules = bag_rules.transform_values do |value|
   value.split(", ").map!{|x| x.gsub(/\d\s|(bag)s?\.?/, "")}.map!{|y| y.chop}
 end
 
-bag_rules = bag_rules.transform_keys do |key|
+@bag_rules = bag_rules.transform_keys do |key|
   key = key[0...-5]
 end
 ########## END PROCESS DATA ##########
 
-container_colours = []
+@container_colours = [gold]
 
-bag_rules.each do |k, v| #TODO: Turn this into a method to pass colours into
-  if v.include?(gold)
-    container_colours << k
+def colour_checker(colour)
+  @bag_rules.each do |k, v|
+    if v.include?(colour)
+      @container_colours << k
+    end
   end
 end
 
-pp container_colours
+for c in @container_colours
+  colour_checker(c)
+end
+    
+pp @container_colours.uniq.count - 1
