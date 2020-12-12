@@ -12,17 +12,22 @@ end
   key = key[0...-5]
 end
 
-@bag_rules = @bag_rules.transform_values do |value| 
-  value.split(", ").map!{|x| x.gsub(/(bag)s?\.?/, "")}.map!{|y| y.chop}
+class Array
+  def hashify
+    # self.each_value do |v|
+      h = {}
+      for i in self
+        h[i[2..i.length]] = i[0]
+      end
+      return h
+    # end
+  end
 end
 
-@bag_rules.each_value do |v|
-  h = {}
-  for i in v
-    h[i[2..i.length]] = i[0]
-  end
-  p h
+@bag_rules = @bag_rules.transform_values do |value| 
+  value.split(", ").map!{|x| x.gsub(/(bag)s?\.?/, "")}.map!{|y| y.chop}.hashify
 end
+
 ########## END PROCESS DATA ##########
 
 @container_colours = [gold]
@@ -40,4 +45,4 @@ for c in @container_colours
 end
     
 # pp @container_colours.uniq.count - 1
-# pp @bag_rules
+pp @bag_rules
