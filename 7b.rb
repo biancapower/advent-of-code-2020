@@ -16,7 +16,13 @@ end
   value.split(", ").map!{|x| x.gsub(/(bag)s?\.?/, "")}.map!{|y| y.chop}
 end
 
-
+@bag_rules.each_value do |v|
+  h = {}
+  for i in v
+    h[i[2..i.length]] = i[0]
+  end
+  p h
+end
 ########## END PROCESS DATA ##########
 
 @container_colours = [gold]
@@ -34,4 +40,4 @@ for c in @container_colours
 end
     
 # pp @container_colours.uniq.count - 1
-pp @bag_rules
+# pp @bag_rules
