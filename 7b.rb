@@ -14,13 +14,11 @@ end
 
 class Array
   def hashify
-    # self.each_value do |v|
-      h = {}
-      for i in self
-        h[i[2..i.length]] = i[0]
-      end
-      return h
-    # end
+    h = {}
+    for i in self
+      h[i[2..i.length]] = i[0]
+    end
+    return h
   end
 end
 
