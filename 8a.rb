@@ -7,14 +7,19 @@ end
 
 accumulator = 0
 
-for i in data
-  case i[0]
+for i in 0...data.length
+  case data[i][0]
   when "acc"
-    accumulator += i[1]
+    p data[i]
+    accumulator += data[i][1]
   when "jmp"
-    p "jmp"
+    p data[i]
+    accumulator += data[i][1]
+    i += data[i][1]
   when "nop"
-    p "nop"
+    p data[i]
   end
+  p i
+  pp accumulator
 end
 # pp data
