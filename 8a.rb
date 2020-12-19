@@ -1,4 +1,4 @@
-data = File.open("8-input.txt").readlines.map(&:chomp).map!{|x| x.split(" ")}
+data = File.open("8-demo.txt").readlines.map(&:chomp).map!{|x| x.split(" ")}
 
 # convert numbers to ints
 for i in data
@@ -6,20 +6,19 @@ for i in data
 end
 
 accumulator = 0
+visited = []
 
 for i in 0...data.length
+  break if visited.include?(i)
+
   case data[i][0]
   when "acc"
-    p data[i]
     accumulator += data[i][1]
   when "jmp"
-    p data[i]
-    accumulator += data[i][1]
     i += data[i][1]
-  when "nop"
-    p data[i]
+    accumulator += data[i][1] if data[i][0] == "acc"
   end
-  p i
-  pp accumulator
+  visited << i
 end
-# pp data
+
+p accumulator
