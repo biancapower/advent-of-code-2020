@@ -48,4 +48,6 @@ for d in @data
   p check_for_loop
 end
 
-# @data.length == 656
+# NOTE: @data.length == 656
+# FIXME: never going past the end of the @data array
+# TODO: step through demo data
