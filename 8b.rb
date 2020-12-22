@@ -5,6 +5,7 @@ for i in @data
   i[1] = i[1].to_i
 end
 
+# method to check for a loop
 def check_for_loop
   accumulator = 0
   visited = []
@@ -23,7 +24,11 @@ def check_for_loop
     end
   end
 
-  return accumulator
+  if i >= @data.length - 1
+    return "yay"
+  else
+    return i
+  end
 end
     
 
@@ -33,7 +38,14 @@ end
   # run method to check for a loop
     # if loop, go to the next nop
     # if not a loop, return accumulator
+for d in @data
+  if d[0] == "nop"
+    d[0] = "jmp"
+  elsif d[0] == "jmp"
+    d[0] = "nop"
+  end
 
+  p check_for_loop
+end
 
-
-pp check_for_loop
+# @data.length == 656
