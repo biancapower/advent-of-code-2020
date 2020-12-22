@@ -48,13 +48,13 @@ def is_it_looping?
     when "jmp"
       j += @data[j][1]
     end
-    
+
     if is_unique.include?(j)
       looping = true
       p "CHEAT j:#{j}, data: #{@data[j]}"
+      return true
     end
   end
-  # return false
 end
-is_it_looping?
+p is_it_looping?
 p @accumulator
