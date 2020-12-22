@@ -34,9 +34,10 @@ end
 
 def is_it_looping?
   is_unique = []
+  looping = false
 
   j = 0
-  while !is_unique.include?(j)
+  while looping == false
     is_unique << j
     case @data[j][0]
     when "nop"
@@ -47,8 +48,13 @@ def is_it_looping?
     when "jmp"
       j += @data[j][1]
     end
+    
+    if is_unique.include?(j)
+      looping = true
+      p "CHEAT j:#{j}, data: #{@data[j]}"
+    end
   end
-  return false
+  # return false
 end
 is_it_looping?
 p @accumulator
