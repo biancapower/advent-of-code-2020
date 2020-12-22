@@ -5,70 +5,35 @@ for i in @data
   i[1] = i[1].to_i
 end
 
-# these are in the initial infinite loop
-# one of these needs to change
-nops = []
-jmps = []
+def check_for_loop
+  accumulator = 0
+  visited = []
 
-# What leads to an infinite loop?
-# accumulator = 0
-visited = []
-
-i = 0
-while !visited.include?(i)
-  visited << i
-  case @data[i][0]
-  when "nop"
-    nops << i
-    i += 1
-  when "acc"
-    # accumulator += @data[i][1]
-    i += 1
-  when "jmp"
-    jmps << i
-    i += @data[i][1]
-  end
-end
-
-@accumulator = 0
-
-def is_it_looping?
-  is_unique = []
-  looping = false
-
-  j = 0
-  while looping == false
-    is_unique << j
-    case @data[j][0]
+  i = 0
+  while !visited.include?(i)
+    visited << i
+    case @data[i][0]
     when "nop"
-      j += 1
+      i += 1
     when "acc"
-      @accumulator += @data[j][1]
-      j += 1
+      accumulator += @data[i][1]
+      i += 1
     when "jmp"
-      j += @data[j][1]
-    end
-
-    if is_unique.include?(j)
-      looping = true
-      # p "CHEAT j:#{j}, data: #{@data[j]}"
-    else
-      p "NOPE"
+      i += @data[i][1]
     end
   end
-  return looping
-end
 
-for n in nops
-  # change nop to jmp, check for loop
-  @data[n][0] = "jmp"
-  p is_it_looping?
+  return accumulator
 end
-for m in jmps
-  # change jmp to nop, check for loop
-  @data[m][0] = "nop"
-  p is_it_looping?
-end
+    
 
-p @accumulator
-# pp @data
+# loop through data
+# when it gets to a nop
+  # change it to a jmp
+  # run method to check for a loop
+    # if loop, go to the next nop
+    # if not a loop, return accumulator
+
+
+
+pp check_for_loop
