@@ -51,10 +51,24 @@ def is_it_looping?
 
     if is_unique.include?(j)
       looping = true
-      p "CHEAT j:#{j}, data: #{@data[j]}"
-      return true
+      # p "CHEAT j:#{j}, data: #{@data[j]}"
+    else
+      p "NOPE"
     end
   end
+  return looping
 end
-p is_it_looping?
+
+for n in nops
+  # change nop to jmp, check for loop
+  @data[n][0] = "jmp"
+  p is_it_looping?
+end
+for m in jmps
+  # change jmp to nop, check for loop
+  @data[m][0] = "nop"
+  p is_it_looping?
+end
+
 p @accumulator
+# pp @data
