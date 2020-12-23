@@ -4,7 +4,7 @@ def contains_pair_for_sum?(arr, n)
   !!arr.uniq.combination(2).detect { |a, b| a + b == n }
 end
 
-def valid_sum?
+def invalid_sum
   i = 25
   while i < @data.length - 1
     current = @data[i]
@@ -15,4 +15,5 @@ def valid_sum?
     i += 1
   end
 end
-valid_sum?
+
+invalid_sum
