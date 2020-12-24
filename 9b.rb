@@ -25,17 +25,14 @@ def subarray_sum(arr, sum)
   i = 1
   while i <= arr.length 
     while current_sum > sum
-      p "#{current_sum} is too large"
       current_sum = current_sum - arr[start] 
       start += 1
-      p "now current_sum is #{current_sum}, start is now #{start}"
     end
     
     if current_sum == sum
       p "Sum found between indexes #{start} and #{i-1}"
-      return true
-    elsif current_sum < sum#i < arr.length 
-      p "#{current_sum} isn't there yet"
+      return @data[start, i-1-start]
+    elsif current_sum < sum
       current_sum = current_sum + arr[i]
     else
       p "No valid subarray"
@@ -46,9 +43,7 @@ def subarray_sum(arr, sum)
   end
 end
 
-subarray_sum(@data, invalid_sum)
-# p @data[0]
-p "invalid: #{invalid_sum}"
+contiguous_range = subarray_sum(@data, invalid_sum)
+
 # add together the smallest and largest
-  # arr.sort!
-  # arr.min + arr.max
+p contiguous_range.max + contiguous_range.min
